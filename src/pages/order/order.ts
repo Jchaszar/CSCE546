@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the OrderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { OrderData } from '../../providers/orderdata/orderdata';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -15,11 +10,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OrderPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+	public orderitems = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public orderdata: OrderData) {
+  	this.orderdata.getData().then((order) =>{
+      if(order){
+        this.orderitems = JSON.parse(order);  
+        }
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderPage');
   }
-
+  ionViewWillEnter(){
+    this.orderdata.getData().then((order) =>{
+      if(order){
+        this.orderitems = JSON.parse(order);      }
+    });
+  }
+  viewOrder(item){
+    this.navCtrl.push('OrderDetailPage', {
+      order: item
+    });
+  }
+	
 }

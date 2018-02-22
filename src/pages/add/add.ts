@@ -2,14 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Data } from '../../providers/data/data';
 import { MenuPage} from '../menu/menu';
+import { Storage } from '@ionic/storage';
 
-
-/**
- * Generated class for the AddPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,25 +12,41 @@ import { MenuPage} from '../menu/menu';
 })
 export class AddPage {
 
-	title;
-	description;
+	public title;
+  public price;
+  public category;
+  public photoURL;
+	public description;
 	public items = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: Data) {
+    this.dataService.getData().then((food) =>{
+      if(food){
+        this.items = JSON.parse(food);      }
+    });
   }
 
   saveItem(){
   	let newItem = {
   		title: this.title,
+      price: this.price,
+      category: this.category,
+      photoURL: this.photoURL,
   		description: this.description,
   	};
   	this.items.push(newItem);
   	this.dataService.save(this.items);
-
+    this.navCtrl.setRoot('MenuPage');
+  }
+  viewItem(item){
+    this.navCtrl.push('ItemDetailPage', {
+      food: item
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddPage');
   }
+
 
 }

@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Order Summary
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	Item:
+<ion-card>
+	<ion-card-content>
+		{{title}}
+	</ion-card-content>
+</ion-card>
+	Date:
+<ion-card>
+	<ion-card-content>
+		{{date}}
+	</ion-card-content>
+</ion-card>
+	Total Price:
+<ion-card>
+	<ion-card-content>
+		{{quantity*price}}
+	</ion-card-content>
+</ion-card>
+
+<ion-card>	
+  <img src="{{photoURL}}"/>
+   <ion-card-content>
+      {{description}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>

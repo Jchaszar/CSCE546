@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      {{title}}
+    </ion-title>
+    <ion-buttons end>
+    <button ion-button (click)="addOrder()">
+    <label>Submit Order &nbsp;</label>
+	<ion-icon name="pricetag"></ion-icon>
+	</button>
+	</ion-buttons> 
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content">
+	<ion-list>
+    <ion-list-header>
+      Quantity
+      <ion-badge color="secondary" item-end>{{quantity}}</ion-badge>
+    </ion-list-header>
+    
+    <ion-item>
+  <ion-range snaps="true" min="1" max="20" pin="true" color="secondary" value="1" [(ngModel)]="quantity">	
+    <ion-label range-left>1</ion-label>
+      <ion-label range-right>20</ion-label>
+  </ion-range>
+</ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+  <ion-label>Date</ion-label>
+  <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+</ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+  <label>Price:</label>
+  {{price}}
+</ion-item>
+</ion-list>
+<ion-list>
+  <ion-item>
+  <label>Order Sum:</label>	
+    	{{quantity*price}}
+    </ion-item>
+  </ion-list>
+
+  <ion-card>	
+    <img src="{{photoURL}}"/>
+    <ion-card-content>
+      {{description}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+

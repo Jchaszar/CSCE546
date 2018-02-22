@@ -2,13 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Data } from '../../providers/data/data';
 import { AddPage } from '../add/add';
+import { Storage } from '@ionic/storage';
+import { OrderData } from '../../providers/orderdata/orderdata';
 
-/**
- * Generated class for the MenuPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -16,19 +12,38 @@ import { AddPage } from '../add/add';
   templateUrl: 'menu.html',
 })
 export class MenuPage {
-	public menuitems = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: Data) {
+public menuitems = [];
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: Data, public orderData: OrderData) {
   	this.dataService.getData().then((food) =>{
   		if(food){
-  			this.menuitems = food;
-  		}
+  			this.menuitems = JSON.parse(food);  		}
   	});
 
   }
+  clearAll(){
+    this.menuitems = [];
+    this.dataService.clear();
+    this.orderData.clear();
+  }
+  viewItem(item){
+    this.navCtrl.push('ItemDetailPage', {
+      food: item
+    });
+  }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() {   
     console.log('ionViewDidLoad MenuPage');
   }
+  ionViewWillEnter(){
+    this.dataService.getData().then((food) =>{
+      if(food){
+        this.menuitems = JSON.parse(food);      }
+    });
+    console.log(this.navParams.data);
+  }
+
 
 }

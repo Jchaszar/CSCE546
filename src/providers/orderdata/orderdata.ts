@@ -2,18 +2,19 @@ import { Storage } from '@ionic/storage';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class Data {
+export class OrderData {
 
 
   constructor(public storage: Storage) {
+  	
   }
 
   getData(){
-  	return this.storage.get('food');
+  	return this.storage.get('order');
   }
   save(data){
   	let newData = JSON.stringify(data);
-  	this.storage.set('food', newData);
+  	this.storage.set('order', newData);
   }
   clear(){
   	this.storage.clear();

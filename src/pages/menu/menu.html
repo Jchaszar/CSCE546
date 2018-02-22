@@ -1,23 +1,33 @@
-<!--
-  Generated template for the MenuPage page.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar color="secondary" style="text-align: center">
     <ion-title>Menu</ion-title>
+
+<!--
+    <ion-buttons end>
+    <button ion-button (click)="clearAll()">
+    <label>Clear All &nbsp;</label>
+	<ion-icon name="close-circle"></ion-icon>
+	</button>
+	</ion-buttons> 
+-->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
+
 	<ion-list>
-		<ion-item *ngFor="let item of menuitems">
-			<label >{{item.title}}<>
+		<ion-item *ngFor="let item of menuitems" (click)=viewItem(item)>
+			<label >{{item.title}}
 			</label>
+
+			<ion-card>	
+  			<img src="{{item.photoURL}}" style="width:350px; height: 150px;"/>
+  			{{item.description}}
+  			</ion-card>
 		</ion-item>
 	</ion-list>
 

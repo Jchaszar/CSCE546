@@ -22,16 +22,35 @@
     </ion-item>
 
     <ion-item>
+      <ion-label floating>Price</ion-label>
+      <ion-input type="number" [(ngModel)]="price"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Category</ion-label>
+      <ion-select [(ngModel)]="category">
+      <ion-option value="dish">Dish</ion-option>
+      <ion-option value="drink">Drink</ion-option>
+      <ion-option value="dessert">Dessert</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Photo URL</ion-label>
+      <ion-input type="url" [(ngModel)]="photoURL"></ion-input>
+    </ion-item>
+
+    <ion-item>
       <ion-label floating>Description</ion-label>
-      <ion-input type="text" [(ngModel)]="description"></ion-input>
+      <ion-textarea type="text" [(ngModel)]="description"></ion-textarea>
     </ion-item>
 
   </ion-list>
 
   <button full ion-button color="secondary" (click)="saveItem()">Save</button>
   <ion-list>
-		<ion-item *ngFor="let item of items">
-			<label >{{item.title}}<>
+		<ion-item *ngFor="let item of items" (click)="viewItem(item)">
+			<label >{{item.title}}
 			</label>
 		</ion-item>
   </ion-list>
