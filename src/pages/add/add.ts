@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Data } from '../../providers/data/data';
 import { MenuPage} from '../menu/menu';
 import { Storage } from '@ionic/storage';
+import firebase from 'firebase';
 
 
 @IonicPage()
@@ -17,13 +17,11 @@ export class AddPage {
   public category;
   public photoURL;
 	public description;
-	public items = [];
+  menuRef;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public dataService: Data) {
-    this.dataService.getData().then((food) =>{
-      if(food){
-        this.items = JSON.parse(food);      }
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    var user = firebase.auth().currentUser.uid;
+    this.menuRef = firebase.database().ref('Owners/' + user + '/Menu/');
   }
 
   saveItem(){
@@ -34,8 +32,13 @@ export class AddPage {
       photoURL: this.photoURL,
   		description: this.description,
   	};
-  	this.items.push(newItem);
-  	this.dataService.save(this.items);
+  	this.menuRef.push({
+       title: newItem.title,
+       price: newItem.price,
+       category: newItem.category,
+       photoURL: newItem.photoURL,
+       description: newItem.description,
+    })
     this.navCtrl.setRoot('MenuPage');
   }
   viewItem(item){

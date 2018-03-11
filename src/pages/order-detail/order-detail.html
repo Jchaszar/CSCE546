@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <ion-title>
       Order Summary
     </ion-title>
@@ -8,29 +8,17 @@
 
 
 <ion-content padding>
-	Item:
-<ion-card>
-	<ion-card-content>
-		{{title}}
-	</ion-card-content>
-</ion-card>
-	Date:
-<ion-card>
-	<ion-card-content>
-		{{date}}
-	</ion-card-content>
-</ion-card>
-	Total Price:
-<ion-card>
-	<ion-card-content>
-		{{quantity*price}}
-	</ion-card-content>
-</ion-card>
+<ion-list>
+		<ion-item *ngFor="let order of orderitems" (click)=viewOrder(order)>
+			<label >{{order.title}}
+				<br> Quantity: {{order.quantity}}
+				<br> Price: ${{order.price}}
+					</label>
+			<ion-card>	
+  			<img src="{{order.photoURL}}" style="width:300px; height: 150px;"/>
+  			{{order.description}}
+  			</ion-card>
+		</ion-item>
 
-<ion-card>	
-  <img src="{{photoURL}}"/>
-   <ion-card-content>
-      {{description}}
-    </ion-card-content>
-  </ion-card>
+	</ion-list>
 </ion-content>

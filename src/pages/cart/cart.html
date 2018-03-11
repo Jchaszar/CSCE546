@@ -1,0 +1,42 @@
+
+<ion-header>
+
+  <ion-navbar color="primary" style="text-align: center">
+    <ion-title>Your Cart</ion-title>
+    <ion-buttons right>
+    	<button ion-button (click)="submitOrder()" >
+    		<label>Submit Order</label>
+    		<ion-icon name="pricetag"></ion-icon>
+    	</button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-list>
+<ion-item>
+  <ion-label floating>Enter Order Address</ion-label>
+  <ion-input type="text" [(ngModel)]="address"></ion-input>
+</ion-item>
+<ion-item>
+<ion-label>Enter Date</ion-label>
+  <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="date"></ion-datetime>
+</ion-item>
+</ion-list>
+</ion-header>
+
+
+<ion-content padding>
+
+
+<ion-list>
+		<ion-item *ngFor="let order of orderitems" (click)=viewOrder(order)>
+			<label >{{order.title}}
+				&nbsp; Price: ${{order.price*order.quantity}}
+				&nbsp; Date: {{order.date}}
+					</label>
+			<ion-card>	
+  			<img src="{{order.photoURL}}" style="width:300px; height: 150px;"/>
+  			</ion-card>
+		</ion-item>
+
+	</ion-list>
+
+</ion-content>

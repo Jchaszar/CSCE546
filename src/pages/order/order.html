@@ -1,7 +1,7 @@
 
 <ion-header>
 
-  <ion-navbar color="secondary" style="text-align: center">
+  <ion-navbar color="primary" style="text-align: center">
     <ion-title>Orders</ion-title>
   </ion-navbar>
 
@@ -13,13 +13,15 @@
 
 <ion-list>
 		<ion-item *ngFor="let order of orderitems" (click)=viewOrder(order)>
-			<label >{{order.title}}
-				&nbsp; Price: ${{order.price*order.quantity}}
-				&nbsp; Date: {{order.date}}
+			<label >Order #: {{order.number}}
+				<br>
+				Total Price: ${{order.pricesum}}
+				<br>
+				 Date: {{order.date}}
+				<br>
+				Address: {{order.address}}
 					</label>
-			<ion-card>	
-  			<img src="{{order.photoURL}}" style="width:300px; height: 150px;"/>
-  			</ion-card>
+				
 		</ion-item>
 
 	</ion-list>

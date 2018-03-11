@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OrderData } from '../../providers/orderdata/orderdata';
 import { Storage } from '@ionic/storage';
-import { Data } from '../../providers/data/data';
 
 @IonicPage()
 @Component({

@@ -8,27 +8,37 @@ import { MenuPageModule } from '../pages/menu/menu.module';
 import { AddPageModule } from '../pages/add/add.module';
 import { OrderPageModule } from '../pages/order/order.module';
 import { ItemDetailPageModule } from '../pages/item-detail/item-detail.module';
+import { EditMenuPageModule } from '../pages/edit-menu/edit-menu.module';
+import { CartdetailPageModule } from '../pages/cartdetail/cartdetail.module';
 
+import { CartdetailPage } from '../pages/cartdetail/cartdetail';
+import { SigninPage } from '../pages/signin/signin';
+import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { AddPage  } from '../pages/add/add';
 import { MenuPage } from '../pages/menu/menu';
 import { OrderPage } from '../pages/order/order';
 import { ItemDetailPage }  from '../pages/item-detail/item-detail';
+import { EditMenuPage } from '../pages/edit-menu/edit-menu';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Data } from '../providers/data/data';
 import { OrderData } from '../providers/orderdata/orderdata';
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
     MyApp,
+    SigninPage,
+    SignupPage,
     TabsPage
   ],
   imports: [
+    CartdetailPageModule,
     BrowserModule,
     MenuPageModule,
     OrderPageModule,
+    EditMenuPageModule,
     AddPageModule,
     ItemDetailPageModule,
     IonicModule.forRoot(MyApp),
@@ -37,9 +47,13 @@ import { OrderData } from '../providers/orderdata/orderdata';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    CartdetailPage,
     AddPage,
+    SigninPage,
+    SignupPage,
     OrderPage,
     ItemDetailPage,
+    EditMenuPage,
     MenuPage,
     TabsPage
   ],
@@ -47,8 +61,9 @@ import { OrderData } from '../providers/orderdata/orderdata';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    Data,
-    OrderData
+    OrderData,
+    AuthProvider
+    
   ]
 })
 export class AppModule {}

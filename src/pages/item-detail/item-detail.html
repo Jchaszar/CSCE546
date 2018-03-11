@@ -1,12 +1,12 @@
 <ion-header>
-  <ion-navbar color="secondary">
+  <ion-navbar color="primary">
     <ion-title>
       {{title}}
     </ion-title>
     <ion-buttons end>
     <button ion-button (click)="addOrder()">
-    <label>Submit Order &nbsp;</label>
-	<ion-icon name="pricetag"></ion-icon>
+    <label>Add to Cart &nbsp;</label>
+	<ion-icon name="cart"></ion-icon>
 	</button>
 	</ion-buttons> 
   </ion-navbar>
@@ -16,11 +16,11 @@
 	<ion-list>
     <ion-list-header>
       Quantity
-      <ion-badge color="secondary" item-end>{{quantity}}</ion-badge>
+      <ion-badge color="primary" item-end>{{quantity}}</ion-badge>
     </ion-list-header>
     
     <ion-item>
-  <ion-range snaps="true" min="1" max="20" pin="true" color="secondary" value="1" [(ngModel)]="quantity">	
+  <ion-range snaps="true" min="1" max="20" pin="true" color="primary" value="1" [(ngModel)]="quantity">	
     <ion-label range-left>1</ion-label>
       <ion-label range-right>20</ion-label>
   </ion-range>
@@ -34,13 +34,13 @@
 </ion-list>
 <ion-list>
   <ion-item>
-  <label>Price:</label>
+  <label>Price: $</label>
   {{price}}
 </ion-item>
 </ion-list>
 <ion-list>
   <ion-item>
-  <label>Order Sum:</label>	
+  <label>Order Total: $</label>	
     	{{quantity*price}}
     </ion-item>
   </ion-list>
